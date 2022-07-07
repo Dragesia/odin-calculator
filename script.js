@@ -1,4 +1,5 @@
 // selecting all buttons
+
 const text = document.querySelector(".text");
 const allButtons = document.querySelectorAll(".btn");
 const sum = document.querySelector(".sum");
@@ -19,5 +20,11 @@ const seven = document.querySelector(".seven");
 const eight = document.querySelector(".eight");
 const nine = document.querySelector(".nine");
 
+// event listeners
 
-// event listeners 
+allButtons.forEach(btn => {
+    btn.onmouseover = () => btn.classList.add("btn-hover");
+    btn.onmouseleave = () => btn.classList.remove("btn-hover");
+    btn.onmousedown = () => btn.classList.add("btn-on");
+    btn.onmouseup = () => btn.classList.remove("btn-on");
+});
