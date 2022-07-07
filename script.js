@@ -1,7 +1,9 @@
-// selecting all buttons
+// selecting all buttons and declaring variables
 
 const text = document.querySelector(".text");
 const allButtons = document.querySelectorAll(".btn");
+const allNumbers = document.querySelectorAll(".btn.num");
+const allTransactions = document.querySelectorAll(".btn.trn");
 const sum = document.querySelector(".sum");
 const sub = document.querySelector(".sub");
 const mul = document.querySelector(".mul");
@@ -20,6 +22,8 @@ const seven = document.querySelector(".seven");
 const eight = document.querySelector(".eight");
 const nine = document.querySelector(".nine");
 
+let textValue = "";
+let values = [];
 // event listeners
 
 allButtons.forEach(btn => {
@@ -29,11 +33,24 @@ allButtons.forEach(btn => {
     btn.onmouseup = () => btn.classList.remove("btn-on");
 });
 
+allNumbers.forEach(num => {
+    num.onclick = writeFromScreen;
+});
+
 clear.onclick = clearText;
 
 //functions
 
 function clearText() {
-    text.value = '';
+    textValue = ""
+    text.value = textValue;
+}
+
+function writeFromScreen(e) {
+    if (textValue == "") {
+        if (e.target.innerHTML == "." || e.target.innerHTML == "0") return;
+    }
+    textValue += e.target.innerHTML;
+    text.value = textValue;
 }
 
