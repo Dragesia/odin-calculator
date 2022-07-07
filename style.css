@@ -52,8 +52,8 @@ h1 {
     font-size: 4rem;
     grid-template-areas:
         'text text text text'
-        'clear dvs mul sub'
-        'seven eight nine sum'
+        'clear dvs mul delete'
+        'seven eight nine sub'
         'four five six sum'
         'one two three enter'
         'zero zero dot enter';
@@ -66,9 +66,17 @@ h1 {
     font-size: 6rem;
     background-color: var(--tx-color);
     text-align: right;
-    padding: 10px;
-    outline: 0;
-    border: 0;
+}
+
+.text-last {
+    width: 548px;
+    height: 20px;
+}
+
+.text-current {
+    width: 548px;
+    height: 80px;
+    padding-right: 5px;
 }
 
 .btn {
@@ -85,50 +93,40 @@ h1 {
 }
 
 .btn-on {
-    background-color: #06283D;
+    background-color: #06283D !important;
     color: var(--tx-color);
 }
 
 .zero {
     grid-area: zero;
 }
-
 .one {
     grid-area: one;
 }
-
 .two {
     grid-area: two;
 }
-
 .three {
     grid-area: three;
 }
-
 .four {
     grid-area: four;
 }
-
 .five {
     grid-area: five;
 }
-
 .six {
     grid-area: six;
 }
-
 .seven {
     grid-area: seven;
 }
-
 .eight {
     grid-area: eight;
 }
-
 .nine {
     grid-area: nine;
 }
-
 .sum {
     grid-area: sum;
 }
@@ -146,4 +144,9 @@ h1 {
 }
 .clear {
     grid-area: clear;
+    background-color: darkred;
+    color: var(--tx-color);
+}
+.delete {
+    grid-area: delete;
 }
