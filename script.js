@@ -28,3 +28,12 @@ allButtons.forEach(btn => {
     btn.onmousedown = () => btn.classList.add("btn-on");
     btn.onmouseup = () => btn.classList.remove("btn-on");
 });
+
+clear.onclick = clearText;
+
+//functions
+
+function clearText() {
+    text.value = '';
+}
+
