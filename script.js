@@ -27,26 +27,25 @@ const nine = document.querySelector(".nine");
 let textValue = "";
 let values = [];
 let currentMode = "free";
+let lastMode;
 
 // event listeners
 
+allButtons.forEach(btn => {
+    btn.onmouseover = () => btn.classList.add("btn-hover");
+    btn.onmouseleave = () => btn.classList.remove("btn-hover");
+    btn.onmousedown = () => btn.classList.add("btn-click");
+    btn.onmouseup = () => btn.classList.remove("btn-click");
+})
+
 allNumbers.forEach(num => {
-    num.onmouseover = () => num.classList.add("btn-hover");
-    num.onmouseleave = () => num.classList.remove("btn-hover");
-    num.onmousedown = () => num.classList.add("btn-on");
-    num.onmouseup = () => num.classList.remove("btn-on");
     num.onclick = writeFromScreen;
 });
 
-allTransactions.forEach(trn => {
-    trn.onmouseover = () => trn.classList.add("btn-hover");
-    trn.onmouseleave = () => trn.classList.remove("btn-hover");
-});
-
-sum.onclick = () => changeMode("sum");
-sub.onclick = () => changeMode("sub");
-mul.onclick = () => changeMode("mul");
-dvs.onclick = () => changeMode("dvs");
+sum.onclick = () => changeMode("+");
+sub.onclick = () => changeMode("-");
+mul.onclick = () => changeMode("x");
+dvs.onclick = () => changeMode("/");
 
 clear.onclick = () => {
     clearText();
@@ -73,7 +72,7 @@ function writeFromScreen(e) {
     if (textValue == "") {
         if (e.target.innerHTML == ".") return;
     }
-    if (textValue[textValue.length-1] == "." && e.target.innerHTML == ".") return;
+    if (textValue.includes(".") && e.target.innerHTML == ".") return;
     if (textValue == "0" && e.target.innerHTML == "0") return;
     textValue += e.target.innerHTML;
     currentText.innerHTML = textValue;
@@ -86,38 +85,35 @@ function changeMode(newMode) {
         sub.classList.remove("btn-on");
         mul.classList.remove("btn-on");
         dvs.classList.remove("btn-on");
-    }
-    console.log(currentMode);
-    if (currentMode == newMode) {
+    } if (currentMode == newMode) {
         currentMode = "free";
         sum.classList.remove("btn-on");
         sub.classList.remove("btn-on");
         mul.classList.remove("btn-on");
         dvs.classList.remove("btn-on");
-    } else if (newMode == "sum") {
-        currentMode = "sum";
+    } else if (newMode == "+") {
+        currentMode = "+";
         sum.classList.add("btn-on");
         sub.classList.remove("btn-on");
         mul.classList.remove("btn-on");
         dvs.classList.remove("btn-on");
-    } else if (newMode == "sub") {
-        currentMode = "sub";
+    } else if (newMode == "-") {
+        currentMode = "-";
         sum.classList.remove("btn-on");
         sub.classList.add("btn-on");
         mul.classList.remove("btn-on");
         dvs.classList.remove("btn-on");
-    } else if (newMode == "mul") {
-        currentMode = "mul";
+    } else if (newMode == "x") {
+        currentMode = "x";
         sum.classList.remove("btn-on");
         sub.classList.remove("btn-on");
         mul.classList.add("btn-on");
         dvs.classList.remove("btn-on");
-    } else if (newMode == "dvs") {
-        currentMode = "dvs";
+    } else if (newMode == "/") {
+        currentMode = "/";
         sum.classList.remove("btn-on");
         sub.classList.remove("btn-on");
         mul.classList.remove("btn-on");
         dvs.classList.add("btn-on");
     }
 }
-
