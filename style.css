@@ -1,0 +1,16 @@
+/* general */
+:root {
+    --pr-color: #06283D;
+    --sc-color: #1363DF;
+    --th-color: #47B5FF;
+    --tx-color: #DFF6FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-size: 10px;
+}
