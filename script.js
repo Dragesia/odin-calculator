@@ -36,3 +36,21 @@ allButtons.forEach(btn => {
     btn.onmouseup = () => btn.classList.remove("btn-click");
 })
 
+// functions
+
+function sumFunc(num1, num2) {
+    return num1 + num2;
+}
+
+function subFunc(num1, num2) {
+    return num1 - num2;
+}
+
+function mulFunc(num1, num2) {
+    return num1 * num2;
+}
+
+function dvsFunc(num1, num2) {
+    if (num2 == 0) return "ERROR";
+    return num1 / num2;
+}
