@@ -62,7 +62,7 @@ h1 {
 
 .text {
     grid-area: text;
-    height: 100px;
+    min-height: 100px;
     font-size: 6rem;
     background-color: var(--tx-color);
     text-align: right;
@@ -76,7 +76,7 @@ h1 {
 
 .text-current {
     width: 548px;
-    height: 80px;
+    min-height: 80px;
     padding-right: 5px;
 }
 
@@ -91,11 +91,6 @@ h1 {
 
 .btn-hover {
     background-color: #73c7ff;
-}
-
-.btn-on {
-    background-color: orange;
-    color: var(--tx-color);
 }
 
 .btn-click {

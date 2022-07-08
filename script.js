@@ -24,7 +24,7 @@ const seven = document.querySelector(".seven");
 const eight = document.querySelector(".eight");
 const nine = document.querySelector(".nine");
 
-let textValue = "";
+let textValue = "0";
 let values = [];
 
 // event listeners
@@ -34,7 +34,17 @@ allButtons.forEach(btn => {
     btn.onmouseleave = () => btn.classList.remove("btn-hover");
     btn.onmousedown = () => btn.classList.add("btn-click");
     btn.onmouseup = () => btn.classList.remove("btn-click");
-})
+});
+
+allNumbers.forEach(num => {
+    num.onclick = write;
+});
+
+dot.onclick = writeDot;
+deleteBtn.onclick = deleteFunc;
+clear.onclick = clearFunc;
+
+window.addEventListener("keydown", write);
 
 // functions
 
@@ -53,4 +63,50 @@ function mulFunc(num1, num2) {
 function dvsFunc(num1, num2) {
     if (num2 == 0) return "ERROR";
     return num1 / num2;
+}
+
+function clearFunc() {
+    values = [];
+    textValue = "0";
+    currentText.innerHTML = textValue;
+}
+
+function deleteFunc() {
+    if (currentText.innerHTML.length == 1) {
+        textValue = "0";
+        currentText.innerHTML = textValue;
+        return;
+    }
+    textValue = currentText.innerHTML.slice(0, -1);
+    currentText.innerHTML = textValue;
+}
+
+function write(e) {
+    if (e.repeat) return;
+    if (currentText.innerHTML.length == 22) return;
+    if (e.key == ".") writeDot();
+    if (e.key == "Enter") resultFunc();
+    if (e.key == "Backspace") deleteFunc();
+    if (e.key != undefined && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(e.key) == 0) return;
+    if (currentText.innerHTML == "0") {
+        if (e.target.innerHTML == "0" || e.key == "0") return;
+    }
+
+    if (currentText.innerHTML == "0") {
+        textValue = "";
+        if (e.key != undefined) textValue += e.key.toString();
+        else if (e.target.innerHTML != undefined) textValue += e.target.innerHTML;
+        currentText.textContent = textValue;
+        return;
+    }
+    if (e.key != undefined) textValue += e.key.toString();
+    else if (e.target.innerHTML != undefined) textValue += e.target.innerHTML;
+    
+    currentText.textContent = textValue;
+}
+
+function writeDot() {
+    if (currentText.innerHTML.includes(".")) return;
+    textValue += ".";
+    currentText.innerHTML = textValue;
 }
