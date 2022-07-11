@@ -119,8 +119,11 @@ function writeDot() {
 }
 
 function writeTransaction(trns) {
+    safeEval(currentText.innerHTML);
+    textValue = result;
+    currentText.innerHTML = textValue;
     if (currentText.innerHTML.includes("+")) return;
-    if (currentText.innerHTML.includes("-")) return;
+    if (currentText.innerHTML[currentText.innerHTML.length-1] == "-") return;
     if (currentText.innerHTML.includes("*")) return;
     if (currentText.innerHTML.includes("/")) return;
     textValue += trns;
@@ -133,7 +136,7 @@ function safeEval(str) {
             return;
         }
     }
-    result = eval(str);
+    result = eval(str).toString();
 }
 
 function equals() {
