@@ -136,7 +136,11 @@ function safeEval(str) {
             return;
         }
     }
-    result = eval(str).toString();
+    result = eval(str);
+    if (result % 1 != 0) {
+        result = result.toFixed(2);
+    }
+    result = result.toString();
 }
 
 function equals() {
