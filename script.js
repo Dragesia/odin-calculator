@@ -25,7 +25,7 @@ const eight = document.querySelector(".eight");
 const nine = document.querySelector(".nine");
 
 let textValue = "0";
-let values = [];
+let result = "";
 
 // event listeners
 
@@ -47,6 +47,7 @@ allTransactions.forEach(trn => {
 dot.onclick = writeDot;
 deleteBtn.onclick = deleteFunc;
 clear.onclick = clearFunc;
+enter.onclick = equals;
 
 window.addEventListener("keydown", write);
 
@@ -90,7 +91,7 @@ function write(e) {
     if (currentText.innerHTML.length == 22) return;
     if (["+", "-", "*", "/"].includes(e.key)) writeTransaction(e.key);
     if (e.key == ".") writeDot();
-    if (e.key == "Enter") resultFunc();
+    if (e.key == "Enter") equals();
     if (e.key == "Backspace") deleteFunc();
     if (e.key != undefined && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(e.key) == 0) return;
     if (currentText.innerHTML == "0") {
@@ -123,5 +124,20 @@ function writeTransaction(trns) {
     if (currentText.innerHTML.includes("*")) return;
     if (currentText.innerHTML.includes("/")) return;
     textValue += trns;
+    currentText.innerHTML = textValue;
+}
+
+function safeEval(str) {
+    for (let i=0; i<str.length; i++) {
+        if ("0123456789+-*/.".includes(str[i]) == 0) {
+            return;
+        }
+    }
+    result = eval(str);
+}
+
+function equals() {
+    safeEval(currentText.innerHTML);
+    textValue = result;
     currentText.innerHTML = textValue;
 }
