@@ -40,6 +40,10 @@ allNumbers.forEach(num => {
     num.onclick = write;
 });
 
+allTransactions.forEach(trn => {
+    trn.onclick = () => writeTransaction(trn.innerHTML);
+});
+
 dot.onclick = writeDot;
 deleteBtn.onclick = deleteFunc;
 clear.onclick = clearFunc;
@@ -84,6 +88,7 @@ function deleteFunc() {
 function write(e) {
     if (e.repeat) return;
     if (currentText.innerHTML.length == 22) return;
+    if (["+", "-", "*", "/"].includes(e.key)) writeTransaction(e.key);
     if (e.key == ".") writeDot();
     if (e.key == "Enter") resultFunc();
     if (e.key == "Backspace") deleteFunc();
@@ -107,6 +112,16 @@ function write(e) {
 
 function writeDot() {
     if (currentText.innerHTML.includes(".")) return;
+    if (["+", "-", "*", "/"].includes(currentText.innerHTML[currentText.innerHTML.length-1])) return;
     textValue += ".";
+    currentText.innerHTML = textValue;
+}
+
+function writeTransaction(trns) {
+    if (currentText.innerHTML.includes("+")) return;
+    if (currentText.innerHTML.includes("-")) return;
+    if (currentText.innerHTML.includes("*")) return;
+    if (currentText.innerHTML.includes("/")) return;
+    textValue += trns;
     currentText.innerHTML = textValue;
 }
