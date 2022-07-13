@@ -112,7 +112,7 @@ function write(e) {
 }
 
 function writeDot() {
-    if (currentText.innerHTML.includes(".")) return;
+    if (currentText.innerHTML.includes(".") && !currentText.innerHTML.includes("+") && !currentText.innerHTML.includes("-") && !currentText.innerHTML.includes("*") && !currentText.innerHTML.includes("/")) return;
     if (["+", "-", "*", "/"].includes(currentText.innerHTML[currentText.innerHTML.length-1])) return;
     textValue += ".";
     currentText.innerHTML = textValue;
